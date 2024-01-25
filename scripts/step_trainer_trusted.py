@@ -1,3 +1,5 @@
+# https://knowledge.udacity.com/questions/1013294
+
 import sys
 from awsglue.transforms import *
 from awsglue.utils import getResolvedOptions
@@ -70,7 +72,6 @@ TrainerTrusted_node1706116153085 = glueContext.write_dynamic_frame.from_options(
     format="json",
     connection_options={
         "path": "s3://eli-stedi-lake-house/trainer/trusted/",
-        "compression": "uncompressed",
         "partitionKeys": [],
     },
     transformation_ctx="TrainerTrusted_node1706116153085",

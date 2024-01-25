@@ -33,15 +33,17 @@ ShareWithResearch_node1705860899330 = Filter.apply(
 )
 
 # Script generated for node Trusted Customer Zone
-TrustedCustomerZone_node1705861571522 = glueContext.write_dynamic_frame.from_options(
-    frame=ShareWithResearch_node1705860899330,
+TrustedCustomerZone_node1705861571522 = glueContext.getSink(
+    path="s3://eli-stedi-lake-house/customer/trusted/",
     connection_type="s3",
-    format="json",
-    connection_options={
-        "path": "s3://eli-stedi-lake-house/customer/trusted/",
-        "partitionKeys": [],
-    },
+    updateBehavior="UPDATE_IN_DATABASE",
+    partitionKeys=[],
+    enableUpdateCatalog=True,
     transformation_ctx="TrustedCustomerZone_node1705861571522",
 )
-
+TrustedCustomerZone_node1705861571522.setCatalogInfo(
+    catalogDatabase="stedi", catalogTableName="customer_trusted"
+)
+TrustedCustomerZone_node1705861571522.setFormat("json")
+TrustedCustomerZone_node1705861571522.writeFrame(ShareWithResearch_node1705860899330)
 job.commit()

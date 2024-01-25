@@ -1,4 +1,4 @@
-# https://learn.udacity.com/nanodegrees/nd027/parts/cd12441/lessons/b197ec56-711e-40f4-8ce5-57bab539b408/concepts/640e633d-b436-4816-9b09-f218a867993a
+-- https://learn.udacity.com/nanodegrees/nd027/parts/cd12441/lessons/b197ec56-711e-40f4-8ce5-57bab539b408/concepts/640e633d-b436-4816-9b09-f218a867993a
 
 CREATE EXTERNAL TABLE IF NOT EXISTS `stedi`.`customer_landing` (
   `customername` string,

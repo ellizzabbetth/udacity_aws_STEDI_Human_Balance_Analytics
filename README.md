@@ -27,13 +27,13 @@ Source: https://aws.amazon.com/blogs/big-data/build-a-lake-house-architecture-on
 
 ## Use Glue Catalog to Query a Landing Zone
 
-### create a Glue Table definition to query the data using SQL
+### Create a Glue Table definition to query the data using SQL
 
 1. Search for Glue Catalog in the AWS Console, and you will see the Glue Data Catalog. Click Data Catalog
 
 2. 
 
-##  generate Python scripts to build a lakehouse solution in AWS that satisfies these requirements from the STEDI data scientists.
+##  Generate Python scripts to build a lakehouse solution in AWS that satisfies these requirements from the STEDI data scientists.
 
 As a starting point, create your own S3 directories for customer_landing, step_trainer_landing, and accelerometer_landing zones, and copy the data there.
 
@@ -103,6 +103,7 @@ aws s3 cp accelerometer/ s3://your-own-bucket-name/accelerometer/ --recursive
 5. write Glue Job called customer_curated
 
 6. create Glue Job call step_trainer_Trusted
+Count of step_trainer_landing: 28680 rows" and "Count of step_trainer_trusted: 14460 rows".
 
 7. create Glue Job called machine_learning_curated
 

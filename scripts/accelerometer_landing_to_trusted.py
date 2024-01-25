@@ -21,19 +21,17 @@ AccelerometerLandingDataCatalog_node1705955091146 = (
     )
 )
 
-# Script generated for node Customer Trusted Data Catalog
-CustomerTrustedDataCatalog_node1705955181248 = (
-    glueContext.create_dynamic_frame.from_catalog(
-        database="stedi",
-        table_name="customer_trusted",
-        transformation_ctx="CustomerTrustedDataCatalog_node1705955181248",
-    )
+# Script generated for node Customer Trusted
+CustomerTrusted_node1705955181248 = glueContext.create_dynamic_frame.from_catalog(
+    database="stedi",
+    table_name="customer_trusted",
+    transformation_ctx="CustomerTrusted_node1705955181248",
 )
 
 # Script generated for node Customer Privacy Filter
 CustomerPrivacyFilter_node1705955222181 = Join.apply(
     frame1=AccelerometerLandingDataCatalog_node1705955091146,
-    frame2=CustomerTrustedDataCatalog_node1705955181248,
+    frame2=CustomerTrusted_node1705955181248,
     keys1=["user"],
     keys2=["email"],
     transformation_ctx="CustomerPrivacyFilter_node1705955222181",
@@ -43,30 +41,32 @@ CustomerPrivacyFilter_node1705955222181 = Join.apply(
 DropFields_node1705955506348 = DropFields.apply(
     frame=CustomerPrivacyFilter_node1705955222181,
     paths=[
-        "customername",
         "email",
         "phone",
-        "birthdate",
-        "serialnumber",
-        "registrationdate",
-        "lastupdatedate",
-        "sharewithresearchasofdate",
-        "sharewithpublicasofdate",
-        "sharewithfriendsasofdate",
+        "shareWithPublicAsOfDate",
+        "shareWithFriendsAsOfDate",
+        "lastUpdateDate",
+        "customerName",
+        "registrationDate",
+        "shareWithResearchAsOfDate",
+        "birthDay",
+        "serialNumber",
     ],
     transformation_ctx="DropFields_node1705955506348",
 )
 
 # Script generated for node Accelerometer Trusted
-AccelerometerTrusted_node1705956559192 = glueContext.write_dynamic_frame.from_options(
-    frame=DropFields_node1705955506348,
+AccelerometerTrusted_node1705956559192 = glueContext.getSink(
+    path="s3://eli-stedi-lake-house/accelerometer/trusted/",
     connection_type="s3",
-    format="json",
-    connection_options={
-        "path": "s3://eli-stedi-lake-house/accelerometer/trusted/",
-        "partitionKeys": [],
-    },
+    updateBehavior="UPDATE_IN_DATABASE",
+    partitionKeys=[],
+    enableUpdateCatalog=True,
     transformation_ctx="AccelerometerTrusted_node1705956559192",
 )
-
+AccelerometerTrusted_node1705956559192.setCatalogInfo(
+    catalogDatabase="stedi", catalogTableName="accelerometer_trusted"
+)
+AccelerometerTrusted_node1705956559192.setFormat("json")
+AccelerometerTrusted_node1705956559192.writeFrame(DropFields_node1705955506348)
 job.commit()
