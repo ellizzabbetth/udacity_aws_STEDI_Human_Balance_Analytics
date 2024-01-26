@@ -33,6 +33,7 @@ Source: https://aws.amazon.com/blogs/big-data/build-a-lake-house-architecture-on
 
 ### GlueAccess
 
+```
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -127,8 +128,12 @@ Source: https://aws.amazon.com/blogs/big-data/build-a-lake-house-architecture-on
         }
     ]
 }
+```
+
 
 ### S3Access
+
+```
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -149,9 +154,11 @@ Source: https://aws.amazon.com/blogs/big-data/build-a-lake-house-architecture-on
         }
     ]
 }
-## s3/buckets/eli-stedi-lake-house Permissions
+```
 
+## s3/buckets/eli-stedi-lake-house S3 Bucket Policy
 
+```
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -167,6 +174,8 @@ Source: https://aws.amazon.com/blogs/big-data/build-a-lake-house-architecture-on
         }
     ]
 }
+```
+
 
 ## Use Glue Catalog to Query a Landing Zone
 
