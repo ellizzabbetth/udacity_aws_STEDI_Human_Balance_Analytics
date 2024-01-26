@@ -24,18 +24,18 @@ spark = glueContext.spark_session
 job = Job(glueContext)
 job.init(args["JOB_NAME"], args)
 
-# Script generated for node Accelerometer Trusted
-AccelerometerTrusted_node1706117410748 = glueContext.create_dynamic_frame.from_catalog(
-    database="stedi",
-    table_name="accelerometer_trusted",
-    transformation_ctx="AccelerometerTrusted_node1706117410748",
-)
-
 # Script generated for node Trainer Trusted
 TrainerTrusted_node1706214731320 = glueContext.create_dynamic_frame.from_catalog(
     database="stedi",
     table_name="trainer_trusted",
     transformation_ctx="TrainerTrusted_node1706214731320",
+)
+
+# Script generated for node Accelerometer Trusted
+AccelerometerTrusted_node1706117410748 = glueContext.create_dynamic_frame.from_catalog(
+    database="stedi",
+    table_name="accelerometer_trusted",
+    transformation_ctx="AccelerometerTrusted_node1706117410748",
 )
 
 # Script generated for node SQL Query
