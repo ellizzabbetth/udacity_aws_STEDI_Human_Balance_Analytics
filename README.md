@@ -1,4 +1,4 @@
-
+![Screenshot](./images/aws_cert.png)
 ## Summary
 
 As a data engineer for the STEDI team, we built a data lakehouse solution for sensor data that trains a machine learning model.
